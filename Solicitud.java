@@ -61,9 +61,13 @@ public class Solicitud {
         return codigo;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
     @Override
     public String toString() {
-        return "Solicituda del Cliente: (" +
+        /*return "Solicituda del Cliente: (" +
                 "codigo=" + codigo +
                 ", nombreCliente='" + nombreCliente + '\'' +
                 ", tipo Servicio=" + tipoServicio +
@@ -75,7 +79,8 @@ public class Solicitud {
                 ", tipo Asistencia=" + tipoAsistencia +
                 ", indicaciones='" + indicaciones + '\'' +
                 ", estado='" + estado + '\'' +
-                ')';
+                ')';*/
+        return "Solicitud #"+codigo+" - Cliente: "+nombreCliente+" - Tipo Servicio: "+tipoServicio+" - Fecha: "+fechaHoraSolicitud+" - Estado: "+estado;        
     }
 
 }

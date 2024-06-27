@@ -1,5 +1,10 @@
 package PROYECUPC;
 import java.util.Scanner;
+/*import RegistroDeSolicitud;
+import AsignacionDeTecnico;
+import GestionDeSolicitud;
+import Historial;
+import Reportes;*/
 
 public class MenuPrincipal {
     static Scanner scanner = new Scanner(System.in);

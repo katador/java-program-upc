@@ -15,7 +15,7 @@ public class GestionDeSolicitud {
             System.out.println("Lista de todas las solicitudes............(1)");
             System.out.println("Buscar por código de solicitud............(2)");
             System.out.println("Cambiar de técnico asignado...............(3)");
-            System.out.println("Actualizar estado de solicitud............(4)");
+            System.out.println("Completar estado solicitud................(4)");
             System.out.println("Eliminar solicitud........................(5)");
             System.out.println("Volver al menú principal..................(0)");
             System.out.print("Seleccione la opción que desea realizar: ");
@@ -112,10 +112,10 @@ public class GestionDeSolicitud {
         boolean encontrada = false;
         for (Solicitud solicitud : solicitudes) {
             if (solicitud.getCodigo() == codigo) {
-                System.out.print("Ingrese el nuevo estado de la solicitud: ");
-                String nuevoEstado = scanner.nextLine();
-                solicitud.setEstado(nuevoEstado);
-                System.out.println("Estado actualizado con éxito.");
+                //System.out.print("Ingrese el nuevo estado de la solicitud: ");
+                //String nuevoEstado = scanner.nextLine();
+                solicitud.setEstado("Completado");
+                System.out.println("Servicio completado con éxito.");
                 encontrada = true;
                 break;
             }

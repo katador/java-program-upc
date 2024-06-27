@@ -12,47 +12,32 @@ public class Reportes {
         System.out.println("--------------REPORTES-----------------");
         System.out.println("=======================================");
         System.out.println();
-        for (Solicitud solicitud : solicitudes) {
-            
+        /*for (Solicitud solicitud : solicitudes) {
+            System.out.println(solicitud.toString());
         }
+        System.out.println();*/
 
         int opcion;
-        /*do {
-            System.out.println("=======================================");
-            System.out.println("--------------REPORTES-----------------");
-            System.out.println("=======================================");
-            
-
-            System.out.println();
+        do {
             System.out.println("Seleccione el tipo de reporte:");
-            System.out.println("Por soporte realizado......(1)");
-            System.out.println("Por estado de soporte......(2)");
-            System.out.println("Por tiempo de ejecución....(3)");
-            System.out.println("Por tipo de servicio.......(4)");
-            System.out.println("Por tipo de dispositivo....(5)");
-            System.out.println("Por técnico...............(6)");
+            System.out.println("Lista de Soportes......(1)");
+            System.out.println("Lista de Soportes Completados......(2)");
+            System.out.println("Lista de Soportes Pendientes....(3)");
+            System.out.println("Volver al menú principal..................(0)");
             System.out.print("Seleccione la opción que desea realizar: ");
+        
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar el buffer
 
             switch (opcion) {
                 case 1:
-                    reportePorSoporteRealizado();
+                    listaSoportes();
                     break;
                 case 2:
-                    reportePorEstadoSoporte();
+                    listaSoportesCompletados();
                     break;
                 case 3:
-                    reportePorTiempoEjecucion();
-                    break;
-                case 4:
-                    reportePorTipoServicio();
-                    break;
-                case 5:
-                    reportePorTipoDispositivo();
-                    break;
-                case 6:
-                    reportePorTecnico();
+                    listaSoportesPendientes();
                     break;
                 case 0:
                     System.out.println("Volviendo al menú principal...");
@@ -61,36 +46,38 @@ public class Reportes {
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
 
-        } while (opcion != 0);*/
+        } while (opcion != 0);
     }
 
-    private static void reportePorSoporteRealizado() {
-        System.out.println("Reporte por soporte realizado:");
-
-    }
-
-    private static void reportePorEstadoSoporte() {
-        System.out.println("Reporte por estado de soporte:");
-
-    }
-
-    private static void reportePorTiempoEjecucion() {
-        System.out.println("Reporte por tiempo de ejecución:");
+    private static void listaSoportes() {
+        System.out.println();
+        for (Solicitud solicitud : solicitudes) {
+            System.out.println(solicitud.toString());
+        }
+        System.out.println();
 
     }
 
-    private static void reportePorTipoServicio() {
-        System.out.println("Reporte por tipo de servicio:");
+    private static void listaSoportesCompletados() {
+        System.out.println();
+        for (Solicitud solicitud : solicitudes) {
+            String estado = solicitud.getEstado();
+            if(estado.trim() == "Completado"){
+                System.out.println(solicitud.toString());
+            }
+        }
+        System.out.println();
 
     }
 
-    private static void reportePorTipoDispositivo() {
-        System.out.println("Reporte por tipo de dispositivo:");
-
-    }
-
-    private static void reportePorTecnico() {
-        System.out.println("Reporte por técnico:");
-
+    private static void listaSoportesPendientes() {
+        System.out.println();
+        for (Solicitud solicitud : solicitudes) {
+            String estado = solicitud.getEstado();
+            if(estado.trim() == "Registrada"){
+                System.out.println(solicitud.toString());
+            }
+        }
+        System.out.println();
     }
 }
