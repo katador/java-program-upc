@@ -9,15 +9,16 @@ public class GestionDeSolicitud {
     public static void gestionar() {
         int opcion;
         do {
-            System.out.println("==============================================");
-            System.out.println("---------------GESTION DE SOLICITUDES---------");
-            System.out.println("==============================================");
-            System.out.println("Lista de todas las solicitudes............(1)");
-            System.out.println("Buscar por código de solicitud............(2)");
-            System.out.println("Cambiar de técnico asignado...............(3)");
-            System.out.println("Completar estado solicitud................(4)");
-            System.out.println("Eliminar solicitud........................(5)");
-            System.out.println("Volver al menú principal..................(0)");
+            String title = "GESTION DE SOLICITUDES";
+            String[] options = {
+                "Lista de todas las solicitudes............(1)",
+                "Buscar por código de solicitud............(2)",
+                "Cambiar de técnico asignado...............(3)",
+                "Completar estado solicitud................(4)",
+                "Eliminar solicitud........................(5)",
+                "Volver al menú principal..................(0)"
+            };
+            ConsoleUtils.printFrame(title, options);
             System.out.print("Seleccione la opción que desea realizar: ");
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar el buffer
@@ -39,9 +40,11 @@ public class GestionDeSolicitud {
                     eliminarSolicitud();
                     break;
                 case 0:
+                    ConsoleUtils.clearConsole();
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
+                    ConsoleUtils.clearConsole();
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
 
@@ -49,49 +52,66 @@ public class GestionDeSolicitud {
     }
 
     private static void listarSolicitudes() {
-        System.out.println("Lista de todas las solicitudes:");
-        if (solicitudes.isEmpty()) {
-            System.out.println("No hay solicitudes registradas.");
-        } else {
-            for (Solicitud solicitud : solicitudes) {
-                System.out.println(solicitud);
-            }
-        }
+        ConsoleUtils.clearConsole();
+        String title = "LISTA DE SOLICITUDES";
+        String[] options = solicitudes.isEmpty() ? 
+            new String[]{"No hay solicitudes registradas."} : 
+            solicitudes.stream().map(Solicitud::toString).toArray(String[]::new);
+        ConsoleUtils.printFrame(title, options);
         Historial.agregarEntrada("Busqueda de listado");
+        esperarEnter();
     }
+
     private static void buscarSolicitud() {
-        System.out.print("Ingrese el código de la solicitud: ");
+        ConsoleUtils.clearConsole();
+        String title = "BUSCAR SOLICITUD";
+        String[] options = {"Ingrese el código de la solicitud"};
+        ConsoleUtils.printFrame(title, options);
+        System.out.print(": ");
         int codigo = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer
 
         boolean encontrada = false;
         for (Solicitud solicitud : solicitudes) {
             if (solicitud.getCodigo() == codigo) {
-                System.out.println("Solicitud encontrada:");
-                System.out.println(solicitud);
+                String[] result = {"Solicitud encontrada:", solicitud.toString()};
+                ConsoleUtils.printFrame(title, result);
                 encontrada = true;
                 break;
             }
         }
 
         if (!encontrada) {
-            System.out.println("Solicitud con código " + codigo + " no encontrada.");
+            String[] result = {"Solicitud con código " + codigo + " no encontrada."};
+            ConsoleUtils.printFrame(title, result);
         }
+        esperarEnter();
     }
 
     private static void cambiarTecnico() {
-        System.out.print("Ingrese el código de la solicitud: ");
+        ConsoleUtils.clearConsole();
+        String title = "CAMBIAR TECNICO";
+        String[] options = {"Ingrese el código de la solicitud"};
+        ConsoleUtils.printFrame(title, options);
+        System.out.print(": ");
         int codigo = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer
 
         boolean encontrada = false;
         for (Solicitud solicitud : solicitudes) {
             if (solicitud.getCodigo() == codigo) {
-                System.out.print("Ingrese el DNI del nuevo técnico: ");
+                ConsoleUtils.clearConsole();
+                String[] dniOptions = {
+                    "Solicitud: " + codigo,
+                    "Ingrese el DNI del nuevo técnico"
+                };
+                ConsoleUtils.printFrame(title, dniOptions);
+                System.out.print(": ");
                 String nuevoDniTecnico = scanner.nextLine();
                 String antiguoDniTecnico = solicitud.getDniTecnico();
                 solicitud.setDniTecnico(nuevoDniTecnico);
-                System.out.println("Técnico asignado con éxito.");
+                String[] successMessage = {"Técnico asignado con éxito."};
+                ConsoleUtils.printFrame(title, successMessage);
                 Historial.agregarEntrada("Cambio de técnico de " + antiguoDniTecnico + " a " + nuevoDniTecnico + " al " + solicitud.getCodigo());
                 Historial.agregarEntrada("Tecnico asignado de " + nuevoDniTecnico + " al codigo " + solicitud.getCodigo());
                 encontrada = true;
@@ -100,35 +120,45 @@ public class GestionDeSolicitud {
         }
 
         if (!encontrada) {
-            System.out.println("Solicitud con código " + codigo + " no encontrada.");
+            String[] result = {"Solicitud con código " + codigo + " no encontrada."};
+            ConsoleUtils.printFrame(title, result);
         }
+        esperarEnter();
     }
 
     public static void actualizarEstado() {
-        System.out.print("Ingrese el código de la solicitud: ");
+        ConsoleUtils.clearConsole();
+        String title = "ACTUALIZAR ESTADO";
+        String[] options = {"Ingrese el código de la solicitud"};
+        ConsoleUtils.printFrame(title, options);
+        System.out.print(": ");
         int codigo = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer
 
         boolean encontrada = false;
         for (Solicitud solicitud : solicitudes) {
             if (solicitud.getCodigo() == codigo) {
-                //System.out.print("Ingrese el nuevo estado de la solicitud: ");
-                //String nuevoEstado = scanner.nextLine();
                 solicitud.setEstado("Completado");
-                System.out.println("Servicio completado con éxito.");
+                String[] successMessage = {"Servicio completado con éxito."};
+                ConsoleUtils.printFrame(title, successMessage);
                 encontrada = true;
                 break;
             }
         }
 
         if (!encontrada) {
-            System.out.println("Solicitud con código " + codigo + " no encontrada.");
+            String[] result = {"Solicitud con código " + codigo + " no encontrada."};
+            ConsoleUtils.printFrame(title, result);
         }
+        esperarEnter();
     }
 
-
     private static void eliminarSolicitud() {
-        System.out.print("Ingrese el código de la solicitud: ");
+        ConsoleUtils.clearConsole();
+        String title = "ELIMINAR SOLICITUD";
+        String[] options = {"Ingrese el código de la solicitud"};
+        ConsoleUtils.printFrame(title, options);
+        System.out.print(": ");
         int codigo = scanner.nextInt();
         scanner.nextLine(); // Limpiar el buffer
 
@@ -137,7 +167,8 @@ public class GestionDeSolicitud {
             Solicitud solicitud = solicitudes.get(i);
             if (solicitud.getCodigo() == codigo) {
                 solicitudes.remove(i);
-                System.out.println("Solicitud eliminada con éxito.");
+                String[] successMessage = {"Solicitud eliminada con éxito."};
+                ConsoleUtils.printFrame(title, successMessage);
                 Historial.agregarEntrada("Se eliminó la solicitud " + codigo);
                 eliminada = true;
                 break;
@@ -145,10 +176,18 @@ public class GestionDeSolicitud {
         }
 
         if (!eliminada) {
-            System.out.println("Solicitud con código " + codigo + " no encontrada.");
+            String[] result = {"Solicitud con código " + codigo + " no encontrada."};
+            ConsoleUtils.printFrame(title, result);
         }
+        esperarEnter();
     }
 
+    private static void esperarEnter() {
+        System.out.println("Presiona Enter para continuar...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-

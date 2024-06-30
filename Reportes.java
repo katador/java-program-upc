@@ -7,25 +7,20 @@ public class Reportes {
     static List<Solicitud> solicitudes = RegistroDeSolicitud.solicitudes;
 
     public static void generarReportes() {
-
-        System.out.println("=======================================");
-        System.out.println("--------------REPORTES-----------------");
-        System.out.println("=======================================");
-        System.out.println();
-        /*for (Solicitud solicitud : solicitudes) {
-            System.out.println(solicitud.toString());
-        }
-        System.out.println();*/
+        String title = "REPORTES";
+        String[] mainMenuOptions = {
+            "Seleccione el tipo de reporte:",
+            "Lista de Soportes........................(1)",
+            "Lista de Soportes Completados............(2)",
+            "Lista de Soportes Pendientes.............(3)",
+            "Volver al menú principal.................(0)"
+        };
 
         int opcion;
         do {
-            System.out.println("Seleccione el tipo de reporte:");
-            System.out.println("Lista de Soportes......(1)");
-            System.out.println("Lista de Soportes Completados......(2)");
-            System.out.println("Lista de Soportes Pendientes....(3)");
-            System.out.println("Volver al menú principal..................(0)");
+            ConsoleUtils.clearConsole();
+            ConsoleUtils.printFrame(title, mainMenuOptions);
             System.out.print("Seleccione la opción que desea realizar: ");
-        
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar el buffer
 
@@ -40,9 +35,11 @@ public class Reportes {
                     listaSoportesPendientes();
                     break;
                 case 0:
+                    ConsoleUtils.clearConsole();
                     System.out.println("Volviendo al menú principal...");
                     break;
                 default:
+                    ConsoleUtils.clearConsole();
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
 
@@ -50,34 +47,49 @@ public class Reportes {
     }
 
     private static void listaSoportes() {
-        System.out.println();
-        for (Solicitud solicitud : solicitudes) {
-            System.out.println(solicitud.toString());
-        }
-        System.out.println();
-
+        ConsoleUtils.clearConsole();
+        String title = "LISTA DE SOPORTES";
+        String[] options = solicitudes.isEmpty() ? 
+            new String[]{"No hay solicitudes registradas."} : 
+            solicitudes.stream().map(Solicitud::toString).toArray(String[]::new);
+        ConsoleUtils.printFrame(title, options);
+        esperarEnter();
     }
 
     private static void listaSoportesCompletados() {
-        System.out.println();
-        for (Solicitud solicitud : solicitudes) {
-            String estado = solicitud.getEstado();
-            if(estado.trim() == "Completado"){
-                System.out.println(solicitud.toString());
-            }
-        }
-        System.out.println();
-
+        ConsoleUtils.clearConsole();
+        String title = "LISTA DE SOPORTES COMPLETADOS";
+        List<String> completados = solicitudes.stream()
+            .filter(solicitud -> solicitud.getEstado().trim().equals("Completado"))
+            .map(Solicitud::toString)
+            .toList();
+        String[] options = completados.isEmpty() ? 
+            new String[]{"No hay solicitudes completadas."} : 
+            completados.toArray(new String[0]);
+        ConsoleUtils.printFrame(title, options);
+        esperarEnter();
     }
 
     private static void listaSoportesPendientes() {
-        System.out.println();
-        for (Solicitud solicitud : solicitudes) {
-            String estado = solicitud.getEstado();
-            if(estado.trim() == "Registrada"){
-                System.out.println(solicitud.toString());
-            }
+        ConsoleUtils.clearConsole();
+        String title = "LISTA DE SOPORTES PENDIENTES";
+        List<String> pendientes = solicitudes.stream()
+            .filter(solicitud -> solicitud.getEstado().trim().equals("Registrada"))
+            .map(Solicitud::toString)
+            .toList();
+        String[] options = pendientes.isEmpty() ? 
+            new String[]{"No hay solicitudes pendientes."} : 
+            pendientes.toArray(new String[0]);
+        ConsoleUtils.printFrame(title, options);
+        esperarEnter();
+    }
+
+    private static void esperarEnter() {
+        System.out.println("Presiona Enter para continuar...");
+        try {
+            System.in.read();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println();
     }
 }

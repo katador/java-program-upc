@@ -16,12 +16,12 @@ public class MenuPrincipal {
             
             String title = "MENU PRINCIPAL";
             String[] options = {
-                "Registro de solicitud.............(1)",
-                "Asignación de técnico.............(2)",
-                "Gestión de solicitud..............(3)",
-                "Historial.........................(4)",
-                "Reportes..........................(5)",
-                "Salir.............................(6)"
+                "Registro de solicitud......................(1)",
+                "Asignación de técnico......................(2)",
+                "Gestión de solicitud.......................(3)",
+                "Historial..................................(4)",
+                "Reportes...................................(5)",
+                "Salir......................................(6)"
             };
 
             ConsoleUtils.printFrame(title, options);
