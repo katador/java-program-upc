@@ -1,5 +1,8 @@
 package PROYECUPC;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class ConsoleUtils {
     public static void clearConsole() {
         try {
@@ -15,16 +18,28 @@ public class ConsoleUtils {
     }
     public static void printFrame(String title, String[] options) {
         clearConsole();
-        int width = 40;
+        int width = 50;
         String horizontalBorder = "+" + "-".repeat(width - 2) + "+";
         System.out.println(horizontalBorder);
-        System.out.printf("| %-36s |\n", title);
+        System.out.printf("| %-46s |\n", title);
         System.out.println(horizontalBorder);
 
         for (String option : options) {
-            System.out.printf("| %-36s |\n", option);
+            printWrappedLine(option, width);
         }
 
         System.out.println(horizontalBorder);
     }
+
+    private static void printWrappedLine(String text, int width) {
+        int maxLength = width - 4; // Ancho del contenido (excluyendo los bordes)
+        while (text.length() > maxLength) {
+            int spaceIndex = text.lastIndexOf(' ', maxLength);
+            if (spaceIndex == -1) spaceIndex = maxLength;
+            System.out.printf("| %-46s |\n", text.substring(0, spaceIndex));
+            text = text.substring(spaceIndex).trim();
+        }
+        System.out.printf("| %-46s |\n", text);
+    }
+
 }
