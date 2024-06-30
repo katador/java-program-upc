@@ -7,39 +7,110 @@ public class RegistroDeSolicitud {
     static List<Solicitud> solicitudes = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
 
+
     public static void registrar() {
-        System.out.println("=======================================");
-        System.out.println("---------REGISTRO DE SOLICITUD---------");
-        System.out.println("=======================================");
+        while (true) {
+            String title = "REGISTRO DE SOLICITUD";
+            String[] options = {
+                "Escriba nombre de cliente",
+                "Regresar al menú principal.................(6)"
+            };
 
+            ConsoleUtils.printFrame(title, options);
 
-        System.out.print("Escriba nombre de cliente: ");
-        String nombreCliente = scanner.nextLine();
+            System.out.print("Escriba nombre de cliente: ");
+            String nombreCliente = scanner.nextLine().trim();
+            if (nombreCliente.equals("6")) {
+                return; // Regresar al menú principal
+            }
+            if (nombreCliente.isEmpty()) {
+                System.out.println("El nombre del cliente no puede estar vacío. Presiona Enter para continuar...");
+                try {
+                    System.in.read();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                continue;
+            }
 
-        System.out.println("Indique tipo de servicio");
-        System.out.println("Reparación...............(1)");
-        System.out.println("Instalación..............(2)");
-        System.out.println("Configuración............(3)");
-        System.out.print(": ");
-        int tipoServicio = scanner.nextInt();
-        scanner.nextLine();
+            ConsoleUtils.clearConsole();
+            String[] servicios = {
+                "Nombre de Cliente: "+nombreCliente,
+                "----------------------------------------------",
+                "TIPO DE SERVICIO                   ",
+                "----------------------------------------------",
+                "Reparación.................................(1)",
+                "Instalación................................(2)",
+                "Configuración..............................(3)"
+            };
+            ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", servicios);
+            System.out.print(": ");
+            int tipoServicio = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("Indique dispositivo");
-        System.out.println("Impresora...............(1)");
-        System.out.println("PC......................(2)");
-        System.out.println("Laptop..................(3)");
-        System.out.println("Otro....................(4)");
-        System.out.print(":");
-        int tipoDispositivo = scanner.nextInt();
-        scanner.nextLine();
+            ConsoleUtils.clearConsole();
+            String[] dispositivos = {
+                "Nombre de Cliente: "+nombreCliente,
+                "Tipo de servicio: "+tipoServicio,
+                "----------------------------------------------",
+                "TIPO DE DISPOSITIVO                ",
+                "----------------------------------------------",
+                "Impresora..................................(1)",
+                "PC.........................................(2)",
+                "Laptop.....................................(3)",
+                "Otro.......................................(4)"
+            };
+            ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", dispositivos);
+            System.out.print(": ");
 
-        System.out.print("Digite la descripción del problema: ");
-        String descripcionProblema = scanner.nextLine();
+            int tipoDispositivo = scanner.nextInt();
+            scanner.nextLine();
+            
 
-        Solicitud solicitud = new Solicitud(nombreCliente, tipoServicio, tipoDispositivo, descripcionProblema);
-        solicitudes.add(solicitud);
+            ConsoleUtils.clearConsole();
 
-        System.out.println("Solicitud registrada con éxito: ");
-        System.out.println(solicitud);
+            String[] descripcion = {
+                "Nombre de Cliente: "+nombreCliente,
+                "Tipo de servicio: "+tipoServicio,
+                "Tipo de dispositivo: "+tipoDispositivo,
+                "----------------------------------------------",
+                "DESCRIPCION DEL PROBLEMA           ",
+                "----------------------------------------------",
+                "Digite la descripción del problema "
+            };
+            ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", descripcion);
+            System.out.print(": ");
+
+           String descripcionProblema = scanner.nextLine().trim();
+           scanner.nextLine();
+           
+
+            Solicitud solicitud = new Solicitud(nombreCliente, tipoServicio, tipoDispositivo, descripcionProblema);
+            solicitudes.add(solicitud);
+
+            ConsoleUtils.clearConsole();
+
+            String[] solicitudLine = {
+                "Nombre de Cliente: "+nombreCliente,
+                "Tipo de servicio: "+tipoServicio,
+                "Tipo de dispositivo: "+tipoDispositivo,
+                "Descripcion: "+descripcionProblema,
+                "----------------------------------------------",
+                "Solicitud registrada con éxito  ",
+                "----------------------------------------------"
+            };
+            ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", solicitudLine);
+            System.out.println(solicitud);
+            System.out.println("Presiona Enter para continuar...");
+
+        
+            try {
+                System.in.read();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            break;
+        }
     }
+ 
 }
