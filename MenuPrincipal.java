@@ -13,18 +13,25 @@ public class MenuPrincipal {
         int opcion;
 
         do {
-            System.out.println("=======================================");
-            System.out.println("------------MENU PRINCIPAL-------------");
-            System.out.println("=======================================");
-            System.out.println("Registro de solicitud.............(1)");
-            System.out.println("Asignación de técnico.............(2)");
-            System.out.println("Gestión de solicitud..............(3)");
-            System.out.println("Historial.........................(4)");
-            System.out.println("Reportes..........................(5)");
+            
+            String title = "MENU PRINCIPAL";
+            String[] options = {
+                "Registro de solicitud.............(1)",
+                "Asignación de técnico.............(2)",
+                "Gestión de solicitud..............(3)",
+                "Historial.........................(4)",
+                "Reportes..........................(5)",
+                "Salir.............................(6)"
+            };
+
+            ConsoleUtils.printFrame(title, options);
+
             System.out.print("Indique una opción: ");
 
             opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar el buffer
+
+            ConsoleUtils.clearConsole();
 
             switch (opcion) {
                 case 1:
@@ -42,8 +49,10 @@ public class MenuPrincipal {
                 case 5:
                     Reportes.generarReportes();
                     break;
-                case 0:
+                
+                case 6:
                     System.out.println("Saliendo del programa...");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
