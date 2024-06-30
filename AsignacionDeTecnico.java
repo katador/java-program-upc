@@ -34,7 +34,7 @@ public class AsignacionDeTecnico {
         ConsoleUtils.clearConsole();
         String[] dniOptions = {
             "Solicitud: " + codigoSolicitud,
-            "Escriba el DNI del técnico"
+            "Escriba el número de DNI del técnico"
         };
         ConsoleUtils.printFrame(title, dniOptions);
         System.out.print(": ");
@@ -43,9 +43,9 @@ public class AsignacionDeTecnico {
         ConsoleUtils.clearConsole();
         String[] prioridadOptions = {
             "Solicitud: " + codigoSolicitud,
-            "DNI del técnico: " + dniTecnico,
+            "Número de DNI del técnico: " + dniTecnico,
             "----------------------------------------------",
-            "Indique el nivel de prioridad",
+            "Seleccione el nivel de prioridad",
             "----------------------------------------------",
             "Alto.......................................(1)",
             "Intermedio.................................(2)",
@@ -59,10 +59,10 @@ public class AsignacionDeTecnico {
         ConsoleUtils.clearConsole();
         String[] asistenciaOptions = {
             "Solicitud: " + codigoSolicitud,
-            "DNI del técnico: " + dniTecnico,
+            "Número de DNI del técnico: " + dniTecnico,
             "Nivel de prioridad: " + nivelPrioridad,
             "----------------------------------------------",
-            "Indique el tipo de asistencia",
+            "Seleccione el tipo de asistencia requerida",
             "----------------------------------------------",
             "Remoto virtual.............................(1)",
             "Telefónico.................................(2)",
@@ -76,7 +76,7 @@ public class AsignacionDeTecnico {
         ConsoleUtils.clearConsole();
         String[] indicacionesOptions = {
             "Solicitud: " + codigoSolicitud,
-            "DNI del técnico: " + dniTecnico,
+            "Número de DNI del técnico: " + dniTecnico,
             "Nivel de prioridad: " + nivelPrioridad,
             "Tipo de asistencia: " + tipoAsistencia,
             "----------------------------------------------",
