@@ -44,7 +44,7 @@ public class RegistroDeSolicitud {
                 "Configuración..............................(3)"
             };
             ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", servicios);
-            System.out.print(": ");
+            System.out.print("Seleccione una opción: ");
             int tipoServicio = scanner.nextInt();
             scanner.nextLine();
 
@@ -61,7 +61,7 @@ public class RegistroDeSolicitud {
                 "Otro.......................................(4)"
             };
             ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", dispositivos);
-            System.out.print(": ");
+            System.out.print("Seleccione una opción ");
 
             int tipoDispositivo = scanner.nextInt();
             scanner.nextLine();
@@ -75,20 +75,21 @@ public class RegistroDeSolicitud {
                 "Tipo de dispositivo: "+tipoDispositivo,
                 "----------------------------------------------",
                 "DESCRIPCION DEL PROBLEMA           ",
-                "----------------------------------------------",
-                "Digite la descripción del problema "
+
             };
             ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", descripcion);
-            System.out.print(": ");
+            System.out.println("Digite la descripción del problema: ");
 
            String descripcionProblema = scanner.nextLine().trim();
+            System.out.println("Presione enter para continuar");
            scanner.nextLine();
-           
+
 
             Solicitud solicitud = new Solicitud(nombreCliente, tipoServicio, tipoDispositivo, descripcionProblema);
             solicitudes.add(solicitud);
 
             ConsoleUtils.clearConsole();
+
 
             String[] solicitudLine = {
                 "Nombre de Cliente: "+nombreCliente,
