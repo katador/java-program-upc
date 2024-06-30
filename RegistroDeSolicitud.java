@@ -61,7 +61,7 @@ public class RegistroDeSolicitud {
                 "Otro.......................................(4)"
             };
             ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", dispositivos);
-            System.out.print("Seleccione una opción ");
+            System.out.print("Seleccione una opción: ");
 
             int tipoDispositivo = scanner.nextInt();
             scanner.nextLine();
@@ -81,7 +81,7 @@ public class RegistroDeSolicitud {
             System.out.println("Digite la descripción del problema: ");
 
            String descripcionProblema = scanner.nextLine().trim();
-            System.out.println("Presione enter para continuar");
+            System.out.println("Presione enter para continuar...");
            scanner.nextLine();
 
 
@@ -102,7 +102,7 @@ public class RegistroDeSolicitud {
             };
             ConsoleUtils.printFrame("REGISTRO DE SOLICITUD", solicitudLine);
             System.out.println(solicitud);
-            System.out.println("Presiona Enter para continuar...");
+            System.out.println("Presione Enter para continuar...");
 
         
             try {
