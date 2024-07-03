@@ -12,16 +12,9 @@ public class Historial {
     }
 
     public static void verHistorial() {
-        String title = "HISTORIAL";
-        String[] options = historial.length() == 0 ? 
-            new String[]{"No hay entradas en el historial."} : 
-            historial.toString().split("\n");
-        ConsoleUtils.printFrame(title, options);
-        System.out.println("Presiona Enter para continuar...");
-        try {
-            System.in.read();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("==============================================");
+        System.out.println("------------HISTORIAL ----------");
+        System.out.println("==============================================");
+        System.out.println(historial.toString());
     }
 }
