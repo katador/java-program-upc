@@ -1,13 +1,18 @@
 package PROYECUPC;
 import java.util.Scanner;
-/*import RegistroDeSolicitud;
-import AsignacionDeTecnico;
-import GestionDeSolicitud;
-import Historial;
-import Reportes;*/
 
 public class MenuPrincipal {
-    static Scanner scanner = new Scanner(System.in);
+  
+    private Scanner scanner;
+    private RegistroDeSolicitud registroDeSolicitud;
+    private GestionDeSolicitud gestionDeSolicitud;
+
+    public MenuPrincipal() {
+        scanner = new Scanner(System.in);
+        gestionDeSolicitud = new GestionDeSolicitud();
+        registroDeSolicitud = new RegistroDeSolicitud(gestionDeSolicitud);
+   
+    }
 
     public void mostrarMenu() {
         int opcion;
@@ -35,13 +40,13 @@ public class MenuPrincipal {
 
             switch (opcion) {
                 case 1:
-                    RegistroDeSolicitud.registrar();
+                    registroDeSolicitud.registrar();
                     break;
                 case 2:
                     AsignacionDeTecnico.asignar();
                     break;
                 case 3:
-                    GestionDeSolicitud.gestionar();
+                    gestionDeSolicitud.gestionar();
                     break;
                 case 4:
                     Historial.verHistorial();
