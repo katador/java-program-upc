@@ -1,12 +1,20 @@
 package PROYECUPC;
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestionDeSolicitud {
-    static Scanner scanner = new Scanner(System.in);
-    static List<Solicitud> solicitudes = RegistroDeSolicitud.solicitudes;
+    
+    private Scanner scanner;
+    private List<Solicitud> solicitudes;
+   
+    public GestionDeSolicitud() {
+        this.scanner = new Scanner(System.in);
+        this.solicitudes = new ArrayList<>();
+     
+    }
 
-    public static void gestionar() {
+    public void gestionar() {
         int opcion;
         do {
             String title = "GESTION DE SOLICITUDES";
@@ -51,7 +59,7 @@ public class GestionDeSolicitud {
         } while (opcion != 0);
     }
 
-    private static void listarSolicitudes() {
+    private void listarSolicitudes() {
         ConsoleUtils.clearConsole();
         String title = "LISTA DE SOLICITUDES";
         String[] options = solicitudes.isEmpty() ? 
@@ -62,7 +70,7 @@ public class GestionDeSolicitud {
         esperarEnter();
     }
 
-    private static void buscarSolicitud() {
+    private void buscarSolicitud() {
         ConsoleUtils.clearConsole();
         String title = "BUSCAR SOLICITUD";
         String[] options = {"Ingrese el código de la solicitud"};
@@ -88,7 +96,7 @@ public class GestionDeSolicitud {
         esperarEnter();
     }
 
-    private static void cambiarTecnico() {
+    private void cambiarTecnico() {
         ConsoleUtils.clearConsole();
         String title = "CAMBIAR TECNICO";
         String[] options = {"Ingrese el código de la solicitud"};
@@ -126,7 +134,7 @@ public class GestionDeSolicitud {
         esperarEnter();
     }
 
-    public static void actualizarEstado() {
+    public void actualizarEstado() {
         ConsoleUtils.clearConsole();
         String title = "ACTUALIZAR ESTADO";
         String[] options = {"Ingrese el código de la solicitud"};
@@ -153,7 +161,7 @@ public class GestionDeSolicitud {
         esperarEnter();
     }
 
-    private static void eliminarSolicitud() {
+    private void eliminarSolicitud() {
         ConsoleUtils.clearConsole();
         String title = "ELIMINAR SOLICITUD";
         String[] options = {"Ingrese el código de la solicitud"};
@@ -182,7 +190,7 @@ public class GestionDeSolicitud {
         esperarEnter();
     }
 
-    private static void esperarEnter() {
+    private void esperarEnter() {
         System.out.println("Presiona Enter para continuar...");
         try {
             System.in.read();

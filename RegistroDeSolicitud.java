@@ -4,11 +4,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RegistroDeSolicitud {
+    
     static List<Solicitud> solicitudes = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in);
+ 
+    private GestionDeSolicitud gestionDeSolicitud;
+    private Scanner scanner;
+
+    public RegistroDeSolicitud(GestionDeSolicitud gestionDeSolicitud) {
+        this.gestionDeSolicitud = gestionDeSolicitud;
+        this.scanner = new Scanner(System.in);
+    }
 
 
-    public static void registrar() {
+    public void registrar() {
         while (true) {
             String title = "REGISTRO DE SOLICITUD";
             String[] options = {
